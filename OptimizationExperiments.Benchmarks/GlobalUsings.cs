@@ -26,3 +26,8 @@ global using Microsoft.Diagnostics.NETCore.Client;
 global using Microsoft.Diagnostics.Tracing.Parsers;
 global using OptimizationExperiments.Benchmarks.Arrays;
 global using OptimizationExperiments.Benchmarks.Configs;
+global using BenchmarkDotNet.Order;
+global using BenchmarkDotNet.Toolchains.InProcess.Emit;
+global using System.Runtime.CompilerServices;
+global using OptimizationExperiments.Benchmarks.Other;
+global using OptimizationExperiments.Benchmarks.Collections;

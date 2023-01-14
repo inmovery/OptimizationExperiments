@@ -18,7 +18,7 @@ public class MemoryPerformanceConfig : ManualConfig
 
         HideColumns(StatisticColumn.Error, StatisticColumn.StdDev, StatisticColumn.Median, BaselineRatioColumn.RatioStdDev);
 
-        AddColumn(StatisticColumn.Min, StatisticColumn.Max, StatisticColumn.OperationsPerSecond, new ParamsSummaryColumn());
+        AddColumn(StatisticColumn.Min, StatisticColumn.Max, StatisticColumn.OperationsPerSecond, new ParamsSummaryColumn(), RankColumn.Stars);
 
         AddColumn(new CategoriesColumn());
         AddLogicalGroupRules(BenchmarkLogicalGroupRule.ByCategory);
@@ -27,11 +27,20 @@ public class MemoryPerformanceConfig : ManualConfig
 
         AddValidator(ExecutionValidator.FailOnError);
 
-        var job = new Job(Job.Default)
+        var throughputJob = new Job(Job.Default)
             .WithLaunchCount(1)
-            .WithToolchain(InProcessNoEmitToolchain.Instance)
-            .WithStrategy(RunStrategy.Monitoring);
+			.WithToolchain(InProcessNoEmitToolchain.Instance)
+            .WithStrategy(RunStrategy.Throughput)
+            .WithId("Throughput");
 
-        AddJob(job);
+        AddJob(throughputJob);
+
+		var monitoringJob = new Job(Job.Default)
+	        .WithLaunchCount(1)
+	        .WithIterationCount(100)
+			.WithStrategy(RunStrategy.Monitoring)
+	        .WithId("Monitoring");
+
+        AddJob(monitoringJob);
     }
 }

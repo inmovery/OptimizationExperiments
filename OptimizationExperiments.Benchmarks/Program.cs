@@ -4,9 +4,15 @@ public class Program
 {
 	public static void Main(string[] args)
 	{
+		#region Other
+
+		//BenchmarkRunner.Run<IntroInProcess>();
+
+		#endregion
+
 		#region Arrays
 
-		BenchmarkRunner.Run<EmptyArraysBenchmark>();
+		//BenchmarkRunner.Run<EmptyArraysBenchmark>();
 		//BenchmarkRunner.Run<FilledArraysBenchmark>();
 		//BenchmarkRunner.Run<GetIndexByValueBenchmark>();
 
@@ -14,7 +20,7 @@ public class Program
 
 		#region Collections
 
-		//BenchmarkRunner.Run<CreateEmptyStringCollectionsBenchmark>();
+		BenchmarkRunner.Run<CreateEmptyStringCollectionsBenchmark>();
 
 		#region Dictionaries
 

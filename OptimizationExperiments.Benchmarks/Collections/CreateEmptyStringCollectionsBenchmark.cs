@@ -7,11 +7,18 @@ public class CreateEmptyStringCollectionsBenchmark
     public void CreateEmptyArray()
     {
         var summary = Array.Empty<string>();
+        Consume(summary);
     }
 
     [Benchmark]
     public void CreateEmptyEnumerable()
     {
         var summary = Enumerable.Empty<string>();
+        Consume(summary);
+	}
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private static void Consume(object collection)
+    {
     }
 }
