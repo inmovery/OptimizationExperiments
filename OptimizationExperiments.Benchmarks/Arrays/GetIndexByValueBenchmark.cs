@@ -1,4 +1,4 @@
-﻿namespace OptimizationExperiments.Benchmark.Benchmarks.Arrays;
+﻿namespace OptimizationExperiments.Benchmarks.Arrays;
 
 [Config(typeof(MemoryPerformanceConfig))]
 public class GetIndexByValueBenchmark

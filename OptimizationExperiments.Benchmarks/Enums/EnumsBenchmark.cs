@@ -1,4 +1,4 @@
-﻿namespace OptimizationExperiments.Benchmark.Benchmarks.Enums;
+﻿namespace OptimizationExperiments.Benchmarks.Enums;
 
 [Config(typeof(MemoryPerformanceConfig))]
 public class EnumsBenchmark

@@ -1,4 +1,4 @@
-﻿namespace OptimizationExperiments.Benchmark;
+﻿namespace OptimizationExperiments.Benchmarks;
 
 public class Program
 {
@@ -6,7 +6,7 @@ public class Program
 	{
 		#region Arrays
 
-		//BenchmarkRunner.Run<EmptyArraysBenchmark>();
+		BenchmarkRunner.Run<EmptyArraysBenchmark>();
 		//BenchmarkRunner.Run<FilledArraysBenchmark>();
 		//BenchmarkRunner.Run<GetIndexByValueBenchmark>();
 
@@ -18,7 +18,7 @@ public class Program
 
 		#region Dictionaries
 
-		BenchmarkRunner.Run<DictionariesBenchmark>();
+		//BenchmarkRunner.Run<DictionariesBenchmark>();
 
 		#endregion
 

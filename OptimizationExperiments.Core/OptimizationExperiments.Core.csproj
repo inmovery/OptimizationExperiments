@@ -6,8 +6,6 @@
 		<Nullable>enable</Nullable>
 		<LangVersion>latest</LangVersion>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<!--<ServerGarbageCollection>true</ServerGarbageCollection>
-		<ConcurrentGarbageCollection>false</ConcurrentGarbageCollection>-->
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -19,20 +17,12 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 		<PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.14" />
-		<PackageReference Include="SpanLinq" Version="0.0.1" />
-		<PackageReference Include="System.Linq.Parallel" Version="4.3.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<Folder Include="Configurations" />
 		<Folder Include="Contracts\" />
 		<Folder Include="Converters\" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Reference Include="PerfXml">
-	    <HintPath>..\..\..\..\Desktop\xml tests\PerfXml\src\PerfXml\bin\Debug\netstandard2.1\PerfXml.dll</HintPath>
-	  </Reference>
 	</ItemGroup>
 
 </Project>

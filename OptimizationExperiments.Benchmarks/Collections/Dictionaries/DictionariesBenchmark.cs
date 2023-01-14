@@ -1,4 +1,4 @@
-﻿namespace OptimizationExperiments.Benchmark.Benchmarks.Collections.Dictionaries;
+﻿namespace OptimizationExperiments.Benchmarks.Collections.Dictionaries;
 
 [Config(typeof(MemoryPerformanceConfig))]
 public class DictionariesBenchmark
