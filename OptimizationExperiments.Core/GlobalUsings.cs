@@ -1,0 +1,17 @@
+﻿global using AutoMapper;
+global using OptimizationExperiments.Core.Models;
+global using Mapster;
+global using System.Xml.Serialization;
+global using System.Runtime.InteropServices;
+global using System.Globalization;
+global using OptimizationExperiments.Core.Extensions;
+global using System.Reflection;
+global using System.Text;
+global using System.Xml;
+global using Newtonsoft.Json;
+global using Microsoft.Extensions.Logging;
+global using OptimizationExperiments.Core.Enums;
+global using System.Text.Encodings.Web;
+global using Microsoft.Extensions.Primitives;
+global using System.Buffers;
+global using System.Diagnostics.CodeAnalysis;
