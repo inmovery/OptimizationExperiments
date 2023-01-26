@@ -31,3 +31,6 @@ global using BenchmarkDotNet.Toolchains.InProcess.Emit;
 global using System.Runtime.CompilerServices;
 global using OptimizationExperiments.Benchmarks.Other;
 global using OptimizationExperiments.Benchmarks.Collections;
+global using OptimizationExperiments.Benchmarks.String;
+global using OptimizationExperiments.Core.Extensions.String;
+global using System.Text;

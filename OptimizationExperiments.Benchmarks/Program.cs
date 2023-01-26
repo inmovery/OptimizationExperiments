@@ -6,7 +6,7 @@ public class Program
 	{
 		#region Other
 
-		//BenchmarkRunner.Run<IntroInProcess>();
+		//BenchmarkRunner.Run<IntroInProcessBenchmark>();
 
 		#endregion
 
@@ -20,7 +20,7 @@ public class Program
 
 		#region Collections
 
-		BenchmarkRunner.Run<CreateEmptyStringCollectionsBenchmark>();
+		//BenchmarkRunner.Run<CreateEmptyStringCollectionsBenchmark>();
 
 		#region Dictionaries
 
@@ -54,5 +54,31 @@ public class Program
 		//BenchmarkRunner.Run<EnumsBenchmark>();
 
 		#endregion
+
+		#region String
+
+		//BenchmarkRunner.Run<ToLowerBenchmark>();
+		//BenchmarkRunner.Run<TrimBenchmark>();
+
+		#endregion
+
+#if DEBUG
+		var correctSource = "test";
+		var source = " test ";
+
+		Console.WriteLine($"Было = [{source}]");
+
+		Console.WriteLine($"Кол-во байт UnsafeToLower (до) = {Encoding.UTF8.GetByteCount(source)}");
+		Console.WriteLine($"Длина UnsafeToLower (до) = {source.Length}");
+
+		source.UnsafeTrimV2();
+
+		Console.WriteLine($"Кол-во байт UnsafeToLower (после) = {Encoding.UTF8.GetByteCount(source)}");
+		Console.WriteLine($"Длина UnsafeToLower (после) = {source.Length}");
+
+		Console.WriteLine($"Стало = [{source}]");
+
+		Console.WriteLine($"Сравнение \"было\" и \"правильный вариант\": {source.Equals(correctSource)}");
+#endif
 	}
 }

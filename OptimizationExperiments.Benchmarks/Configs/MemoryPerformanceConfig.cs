@@ -8,7 +8,7 @@ public class MemoryPerformanceConfig : ManualConfig
             CultureInfo.CurrentCulture,
             printUnitsInHeader: true,
             SizeUnit.B,
-            TimeUnit.Nanosecond,
+            TimeUnit.Millisecond,
             ratioStyle: RatioStyle.Percentage);
 
         WithOptions(ConfigOptions.DisableOptimizationsValidator);
@@ -27,13 +27,13 @@ public class MemoryPerformanceConfig : ManualConfig
 
         AddValidator(ExecutionValidator.FailOnError);
 
-        var throughputJob = new Job(Job.Default)
-            .WithLaunchCount(1)
-			.WithToolchain(InProcessNoEmitToolchain.Instance)
-            .WithStrategy(RunStrategy.Throughput)
-            .WithId("Throughput");
+   //     var throughputJob = new Job(Job.Default)
+   //         .WithLaunchCount(1)
+			//.WithToolchain(InProcessNoEmitToolchain.Instance)
+   //         .WithStrategy(RunStrategy.Throughput)
+   //         .WithId("Throughput");
 
-        AddJob(throughputJob);
+   //     AddJob(throughputJob);
 
 		var monitoringJob = new Job(Job.Default)
 	        .WithLaunchCount(1)

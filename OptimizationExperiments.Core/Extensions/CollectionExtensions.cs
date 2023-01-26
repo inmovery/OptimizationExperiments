@@ -2,15 +2,13 @@
 
 public static class CollectionExtensions
 {
-    public static string? GetValue(this Dictionary<string, string?> dictionary, string? key)
+    public static TValue? GetValue<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey? key) where TKey : notnull
     {
-        return key is null
-            ? default
-            : CollectionsMarshal.GetValueRefOrAddDefault(dictionary, key, out _);
-    }
+	    if (key is null)
+		    return default;
 
-    public static string? GetValue(this Dictionary<StringValues, StringValues> dictionary, StringValues key)
-    {
-	    return CollectionsMarshal.GetValueRefOrAddDefault(dictionary, key, out _);
+	    ref var value = ref CollectionsMarshal.GetValueRefOrAddDefault(dictionary, key, out _);
+
+        return Unsafe.IsNullRef(ref value) ? default : value;
     }
 }

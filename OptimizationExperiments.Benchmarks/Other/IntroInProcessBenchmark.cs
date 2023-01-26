@@ -3,7 +3,7 @@
 [Config(typeof(Config))]
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [MemoryDiagnoser]
-public class IntroInProcess
+public class IntroInProcessBenchmark
 {
 	private class Config : ManualConfig
 	{
