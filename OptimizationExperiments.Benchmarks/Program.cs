@@ -21,6 +21,7 @@ public class Program
 		#region Collections
 
 		//BenchmarkRunner.Run<CreateEmptyStringCollectionsBenchmark>();
+		//BenchmarkRunner.Run<ForBenchmark>();
 
 		#region Dictionaries
 
@@ -31,6 +32,8 @@ public class Program
 		#region List
 
 		//BenchmarkRunner.Run<CreateListWithCapacityBenchmark>();
+		//BenchmarkRunner.Run<PassDifferentParametersBenchmark>();
+		BenchmarkRunner.Run<DefaultFeaturesOfSomeArrayAndListBenchmark>();
 
 		#endregion
 

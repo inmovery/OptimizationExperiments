@@ -343,8 +343,8 @@ public class DictionariesBenchmark
 
             return unknown;
         }
-        catch (KeyNotFoundException exception)
-        {
+        catch (KeyNotFoundException)
+		{
             unknown = default;
             return unknown;
         }
