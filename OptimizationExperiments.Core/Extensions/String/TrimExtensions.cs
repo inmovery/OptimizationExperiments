@@ -2,16 +2,52 @@
 
 public static class TrimExtensions
 {
+	private static readonly char[] EmptyCharacter = { '\0' };
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool IsWhiteSpace(this char ch)
+	{
+		switch (ch)
+		{
+			case '\u0009':
+			case '\u000A':
+			case '\u000B':
+			case '\u000C':
+			case '\u000D':
+			case '\u0020':
+			case '\u0085':
+			case '\u00A0':
+			case '\u1680':
+			case '\u2000':
+			case '\u2001':
+			case '\u2002':
+			case '\u2003':
+			case '\u2004':
+			case '\u2005':
+			case '\u2006':
+			case '\u2007':
+			case '\u2008':
+			case '\u2009':
+			case '\u200A':
+			case '\u2028':
+			case '\u2029':
+			case '\u202F':
+			case '\u205F':
+			case '\u3000':
+				return true;
+			default:
+				return false;
+		}
+	}
+
 	public static unsafe StringValues UnsafeTrim(this string source)
 	{
-		// TODO: fix TrimEnd
-		var len = source.Length;
 		fixed (char* pStr = source)
 		{
 			var destinationIndex = 0;
-			for (var i = 0; i < len; i++)
-				if (!char.IsWhiteSpace(pStr[i]))
-					pStr[destinationIndex++] = pStr[i];
+			for (var ptr = pStr; *ptr != 0; ++ptr)
+				if (!(*ptr).IsWhiteSpace())
+					pStr[destinationIndex++] = *ptr;
 
 			return new string(pStr, 0, destinationIndex);
 		}
@@ -22,7 +58,11 @@ public static class TrimExtensions
 		fixed (char* pStr = source)
 		{
 			for (var ptr = pStr; *ptr != 0; ++ptr)
-				*ptr = *ptr == 0x20 ? (char)(*ptr & '\0') : *ptr;
+			{
+				// TODO: Marshal.ZeroFreeGlobalAllocAnsi((IntPtr)ptr);
+
+				*ptr = (*ptr).IsWhiteSpace() ? (char)(*ptr & '\0') : *ptr;
+			}
 
 			// TODO: Replace('\0'.ToString(), string.Empty)
 
@@ -33,9 +73,8 @@ public static class TrimExtensions
 	public static StringValues TrimViaBytes(this string source)
 	{
 		var bytes = MemoryMarshal.AsBytes(source.AsSpan());
-		var result = MemoryMarshal.Cast<byte, char>(bytes.Trim());
 
-		return result.ToString();
+		return Encoding.ASCII.GetString(bytes.Trim());
 	}
 
 	public static ReadOnlySpan<byte> Trim(this ReadOnlySpan<byte> span)

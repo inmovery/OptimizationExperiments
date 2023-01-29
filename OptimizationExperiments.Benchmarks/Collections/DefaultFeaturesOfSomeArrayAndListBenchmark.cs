@@ -3,18 +3,18 @@
 [Config(typeof(MemoryPerformanceConfig))]
 public class DefaultFeaturesOfSomeArrayAndListBenchmark
 {
-	private const int SpecificNumber = 558855;
+	private const string SpecificNumber = "558855";
 	private const int ItemsCount = 10000;
 
 	[Benchmark]
 	public void Array()
 	{
-		int[] array = { 1, 5, 4, 6 };
+		string[] array = { "1", "5", "4", "6" };
 
 		// Add
 		for (var i = 0; i < ItemsCount; i++)
 		{
-			array = array.Append(i).ToArray();
+			array = array.Append($"{i}").ToArray();
 
 		}
 
@@ -22,7 +22,7 @@ public class DefaultFeaturesOfSomeArrayAndListBenchmark
 
 		for (var i = 0; i < ItemsCount; i++)
 		{
-			array = array.Append(i).ToArray();
+			array = array.Append($"{i}").ToArray();
 		}
 
 		// Remove
@@ -32,9 +32,9 @@ public class DefaultFeaturesOfSomeArrayAndListBenchmark
 	}
 
 	[Benchmark]
-	public void ArrayList()
+	public void ArrayList_WithCapacity()
 	{
-		var arrayList = new ArrayList();
+		var arrayList = new ArrayList(ItemsCount);
 
 		// Add
 		for (var i = 0; i < ItemsCount; i++)
@@ -55,21 +55,21 @@ public class DefaultFeaturesOfSomeArrayAndListBenchmark
 	}
 
 	[Benchmark(Baseline = true)]
-	public void List()
+	public void List_WithCapacity()
 	{
-		var list = new List<int>();
+		var list = new List<string>(ItemsCount);
 
 		// Add
 		for (var i = 0; i < ItemsCount; i++)
 		{
-			list.Add(i);
+			list.Add($"{i}");
 		}
 
 		list.Add(SpecificNumber);
 
 		for (var i = 0; i < ItemsCount; i++)
 		{
-			list.Add(i);
+			list.Add($"{i}");
 		}
 
 		// Remove
@@ -79,19 +79,19 @@ public class DefaultFeaturesOfSomeArrayAndListBenchmark
 	[Benchmark]
 	public void LinkedList()
 	{
-		var linkedList = new LinkedList<int>();
+		var linkedList = new LinkedList<string>();
 
 		// Add
 		for (var i = 0; i < ItemsCount; i++)
 		{
-			linkedList.AddFirst(i);
+			linkedList.AddFirst($"{i}");
 		}
 
 		linkedList.AddFirst(SpecificNumber);
 
 		for (var i = 0; i < ItemsCount; i++)
 		{
-			linkedList.AddFirst(i);
+			linkedList.AddFirst($"{i}");
 		}
 
 		// Remove
@@ -99,21 +99,21 @@ public class DefaultFeaturesOfSomeArrayAndListBenchmark
 	}
 
 	[Benchmark]
-	public void HashSet()
+	public void HashSet_WithCapacity()
 	{
-		var hashSet = new HashSet<int>();
+		var hashSet = new HashSet<string>(ItemsCount);
 
 		// Add
 		for (var i = 0; i < ItemsCount; i++)
 		{
-			hashSet.Add(i);
+			hashSet.Add($"{i}");
 		}
 
 		hashSet.Add(SpecificNumber);
 
 		for (var i = 0; i < ItemsCount; i++)
 		{
-			hashSet.Add(i);
+			hashSet.Add($"{i}");
 		}
 
 		// Remove
@@ -123,22 +123,44 @@ public class DefaultFeaturesOfSomeArrayAndListBenchmark
 	[Benchmark]
 	public void SortedSet()
 	{
-		var sortedSet = new SortedSet<int>();
+		var sortedSet = new SortedSet<string>();
 
 		// Add
 		for (var i = 0; i < ItemsCount; i++)
 		{
-			sortedSet.Add(i);
+			sortedSet.Add($"{i}");
 		}
 
 		sortedSet.Add(SpecificNumber);
 
 		for (var i = 0; i < ItemsCount; i++)
 		{
-			sortedSet.Add(i);
+			sortedSet.Add($"{i}");
 		}
 
 		// Remove
 		sortedSet.Remove(SpecificNumber);
+	}
+
+	[Benchmark]
+	public void StringCollection()
+	{
+		var stringCollection = new StringCollection();
+
+		// Add
+		for (var i = 0; i < ItemsCount; i++)
+		{
+			stringCollection.Add($"{i}");
+		}
+
+		stringCollection.Add(SpecificNumber);
+
+		for (var i = 0; i < ItemsCount; i++)
+		{
+			stringCollection.Add($"{i}");
+		}
+
+		// Remove
+		stringCollection.Remove(SpecificNumber);
 	}
 }

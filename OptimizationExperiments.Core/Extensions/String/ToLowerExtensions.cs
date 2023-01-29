@@ -2,7 +2,7 @@
 
 public static class ToLowerExtensions
 {
-	public static unsafe StringValues UnsafeToLower(this string asciiString)
+	public static unsafe string UnsafeToLower(this string asciiString)
 	{
 		fixed (char* pStr = asciiString)
 		{

@@ -1,4 +1,7 @@
-﻿namespace OptimizationExperiments.Benchmarks;
+﻿using System.Diagnostics;
+using Microsoft.CodeAnalysis.Text;
+
+namespace OptimizationExperiments.Benchmarks;
 
 public class Program
 {
@@ -7,6 +10,7 @@ public class Program
 		#region Other
 
 		//BenchmarkRunner.Run<IntroInProcessBenchmark>();
+		BenchmarkRunner.Run<TrimToLowerEqualsBenchmark>();
 
 		#endregion
 
@@ -33,7 +37,7 @@ public class Program
 
 		//BenchmarkRunner.Run<CreateListWithCapacityBenchmark>();
 		//BenchmarkRunner.Run<PassDifferentParametersBenchmark>();
-		BenchmarkRunner.Run<DefaultFeaturesOfSomeArrayAndListBenchmark>();
+		//BenchmarkRunner.Run<DefaultFeaturesOfSomeArrayAndListBenchmark>();
 
 		#endregion
 
@@ -62,26 +66,41 @@ public class Program
 
 		//BenchmarkRunner.Run<ToLowerBenchmark>();
 		//BenchmarkRunner.Run<TrimBenchmark>();
+		//BenchmarkRunner.Run<StringComparisonsBenchmark>();
 
 		#endregion
 
 #if DEBUG
-		var correctSource = "test";
-		var source = " test ";
+		var string1 = "\0roman_piskunov@bk.ru\0\0";
+		var string2 = "\0\0\0\0\0\0roman_piskunov@bk.ru\0\0";
 
-		Console.WriteLine($"Было = [{source}]");
+		Console.WriteLine(string1.AsSpan().UnsafeEqualsExceptWithEmptyCharacters(string2.AsSpan()));
+		Console.WriteLine(string1.UnsafeEquals(string2));
+		Console.WriteLine(string1.GetHashCode().Equals(string2.GetHashCode()));
+		Console.WriteLine(string1.Equals(string2));
+		Console.WriteLine(string.Compare(string1, string2, StringComparison.Ordinal) == 0);
 
-		Console.WriteLine($"Кол-во байт UnsafeToLower (до) = {Encoding.UTF8.GetByteCount(source)}");
-		Console.WriteLine($"Длина UnsafeToLower (до) = {source.Length}");
+		var collection = new StringDictionary();
 
-		source.UnsafeTrimV2();
+		//var correctSource = "test";
+		//var source1 = "   test   ";
+		//var source2 = "   test ";
 
-		Console.WriteLine($"Кол-во байт UnsafeToLower (после) = {Encoding.UTF8.GetByteCount(source)}");
-		Console.WriteLine($"Длина UnsafeToLower (после) = {source.Length}");
+		//Console.WriteLine($"Было = [{source1}]");
 
-		Console.WriteLine($"Стало = [{source}]");
+		//Console.WriteLine($"Кол-во байт UnsafeToLower (до) = {Encoding.UTF8.GetByteCount(source1)}");
+		//Console.WriteLine($"Длина UnsafeToLower (до) = {source1.Length}");
 
-		Console.WriteLine($"Сравнение \"было\" и \"правильный вариант\": {source.Equals(correctSource)}");
+		//var test1 = source1.UnsafeTrimV2();
+
+		//var test2 = source2.UnsafeTrim();
+
+		//Console.WriteLine($"Кол-во байт UnsafeToLower (после) = {Encoding.UTF8.GetByteCount(source1)}");
+		//Console.WriteLine($"Длина UnsafeToLower (после) = {source1.Length}");
+
+		//Console.WriteLine($"Стало = [{source1}]");
+
+		//Console.WriteLine($"Сравнение \"было\" и \"правильный вариант\": {source1.Equals(correctSource)}");
 #endif
 	}
 }

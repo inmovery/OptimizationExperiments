@@ -54,6 +54,16 @@ public class TrimBenchmark
 		foreach (var _ in Enumerable.Range(0, 90_000))
 		{
 			var staticSource = _source;
+			staticSource = staticSource.UnsafeTrim();
+		}
+	}
+
+	[Benchmark]
+	public void TrimUnsafeV2()
+	{
+		foreach (var _ in Enumerable.Range(0, 90_000))
+		{
+			var staticSource = _source;
 			staticSource = staticSource.UnsafeTrimV2();
 		}
 	}

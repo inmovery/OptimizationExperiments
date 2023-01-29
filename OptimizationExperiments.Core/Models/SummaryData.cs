@@ -35,7 +35,7 @@ public readonly struct SummaryData
 	/// <summary>
 	/// Пол
 	/// </summary>
-	public string Gender { get; init; }
+	public Gender Gender { get; init; }
 
 	/// <summary>
 	/// Первичная прибыль
